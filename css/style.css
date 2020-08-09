@@ -1,0 +1,27 @@
+body{
+    text-align:center;
+} 
+div{
+    margin:0 auto;
+    width:1110px;
+    height:570px;
+    background-image: url(../img/bg1.png);
+    background-repeat: no-repeat;
+    text-align:center;
+}
+#tourist{
+    padding-top:180px;
+}
+
+#signin{
+    padding-top: 15px;
+}
+
+#about{
+    padding-top: 20px;
+}
+
+#setting{
+    padding-left:15px;
+    padding-top: 20px;
+}
