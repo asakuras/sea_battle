@@ -1,27 +1,259 @@
-body{
-    text-align:center;
-} 
-div{
+.container{
     margin:0 auto;
+    text-align:center;
     width:1110px;
     height:570px;
-    background-image: url(../img/bg1.png);
-    background-repeat: no-repeat;
     text-align:center;
+    position: relative;
+}
+#bg-1{
+    background-image: url(../img/bg-1.png);
+    background-repeat: no-repeat;
+}
+
+#bg-2{
+    background-image: url(../img/bg-2.png);
+    background-repeat: no-repeat;
+}
+
+#bg-signin{
+    background-image: url(../img/bg-signin.png);
+    background-repeat: no-repeat;
+}
+
+#bg-signup{
+    background-image: url(../img/bg-signup.png);
+    background-repeat: no-repeat;
+}
+
+#bg-choosesize{
+    background-image: url(../img/bg-choosesize.png);
+    background-repeat: no-repeat;
+}
+
+
+
+#bg-lobby{
+    background-image: url(../img/bg-lobby.png);
+    background-repeat: no-repeat;
+}
+
+#bg-userinfo{
+    background-image: url(../img/bg-userinfo.png);
+    background-repeat: no-repeat;
+}
+
+
+
+div .signin{
+    margin:0 auto;
+    width: 600px;
+    height:600px;
+    padding-top: 120px;
+}
+
+div .signin h1{
+    color:#7d4509;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:40px;
+    margin:0px;
+
+}
+
+#game_mode{
+    color:#7d4509;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:40px;
+    margin:0px;
+    padding-top: 120px;
+}
+
+input{
+    width: 262px;
+    height:62px;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:40px;
+    border: none ;
+    font-weight: bold;
+    padding-left: 10px;
+    margin-top: 35px;
+    margin-left:20px;
+    color:#97530b;
+    background-color: #ebdac0;
+    background-image: url(../img/box.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+input[value]{
+    width: 120px;
+    height:30px;
+    font-size:20px;
+}
+
+hr{
+    width: 400px;
+    color:#97530b;
+
+}
+
+span{
+    color:#97530b;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+
+}
+a{
+    color:#97530b;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+    text-decoration: none;
+
+
 }
 #tourist{
-    padding-top:180px;
+    padding-top:200px;
 }
 
 #signin{
-    padding-top: 15px;
+    margin-top: 10px;
 }
 
 #about{
-    padding-top: 20px;
+    padding-top: 1%;
+    width:8%;
 }
 
 #setting{
-    padding-left:15px;
+    padding-left:1%;
+    padding-top: 1%;
+    width:8%;
+}
+
+#back{
+    position: absolute;
+    left:800px;
+    top:390px;
+}
+
+#name_card{
+    position: absolute;
+    left:50px;
+    top:50px;
+    width:300px;
+    height:200px;
+}
+
+.name_card{
+
+    width:400px;
+    z-index:0;
+}
+
+#user-info{
+    position:absolute;
+    top:80px;
+    left:50px;
+    width:90px;
+    z-index:1;
+}
+
+#username{
+    position:absolute;
+    top:68px;
+    left:210px;
+    color:#97530b;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+}
+#role{
+    position:absolute;
+    top:92px;
+    left:210px;
+    color:#97530b;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+}
+
+#view_detail{
+    position:absolute;
+    top:146px;
+    left:140px;
+    color:#97530b;
+    padding:3px;
+    line-height: 16px;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:16px;
+    border:#97530b solid  0.5px;
+    border-radius: 5px;
+}
+#sign_out{
+    position:absolute;
+    top:146px;
+    left:210px;
+    color:#97530b;
+    padding:3px;
+    line-height: 16px;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:16px;
+    border:#97530b solid  0.5px;
+    border-radius: 5px;
+}
+#human_mode{
+    padding-top:160px;
+    width: 300px;
+}
+
+#ai_mode{
+    width: 300px;
+
+}
+
+#tenxten{
+    padding-top:160px;
+    width: 300px;
+}
+
+#sevenxseven{
+    width: 300px;
+}
+
+#game-detail{
+    height:300px;
+    width: 500px;
+    margin:0 auto;
+    padding-top:270px;
+}
+
+table {
+    border-collapse: collapse;
+    width:400px;
+    margin:0 auto;
+}
+
+table, th, td {
+    border: 2px solid#7d4509;
+    opacity: 0.9;
+}
+
+th, td {
+    padding: 5px;
+    color:#6c3b08;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+    line-height: 20px;
+}
+
+
+#left{
+    width: 20px;
     padding-top: 20px;
+}
+
+
+#right{
+    width: 20px;
+    padding-left:100px;
 }
