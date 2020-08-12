@@ -6,6 +6,7 @@
     $role = $_SESSION['role'];
     $role_img = $_SESSION['user_icon'];
     $username = $_SESSION['username'];
+    print($_COOKIE['userid']);
     
 
 ?>

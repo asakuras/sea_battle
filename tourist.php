@@ -16,7 +16,9 @@
     $_SESSION['username'] = $username;
     $_SESSION[ "user_icon" ] = "img/tourist_icon.png";
     
-    addTourist($username);
+
+    $userid = addTourist($username);
+    setcookie('userid',$userid );
 
     header("Location: lobby.php");
     die();
