@@ -1,6 +1,13 @@
 <?php
-    $role = "user";
-    $role_img = "img/user_icon.png";
+    session_start();
+    if(!isset($_SESSION['role'])){
+        header("Location: index.php");
+    }
+    $role = $_SESSION['role'];
+    $role_img = $_SESSION['user_icon'];
+    $username = $_SESSION['username'];
+    
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -17,16 +24,17 @@
     
     <img class="name_card" src="img/name_card.png" alt="name_card">
     <img id="user-info" src=<?=$role_img?> alt=<?=$role?>>
-    <p id="username">user01</p>
-    <p id="role">user</p>
-    <span><a href="user_info.php" id="view_detail">view detail</a> <a id="sign_out">sign out</a><span>
+    <p id="username"><?=$username?></p>
+    <p id="role"><?=$role?></p>
+    <span><a href="user_info.php" id="view_detail">view detail</a> <a href="dosignout.php" id="sign_out">sign out</a><span>
     
 </div>  
     
-    <a href="choose_size.html"><img id="human_mode" src="img/human_mode.png" alt="human_mode"></a>
+    <a href="choose_size.php"><img class="two_box_top" src="img/human_mode.png" alt="human_mode"></a>
     <br>
-    <a href="choose_size.html"><img id="ai_mode" src="img/ai_mode.png" alt="ai_mode"></a>
-    <a href="index.html"><img id="back" src="img/back.png" alt="back"></a>
+    <a href="choose_size.php"><img class="two_box_bottom" src="img/ai_mode.png" alt="ai_mode"></a>
+    <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>
+    <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
 
 </div>
 </body>

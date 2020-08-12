@@ -9,24 +9,32 @@
 </head>
 <body>
 <div id="bg-userinfo" class="container">
+<div id = "basic-info">
+        <p>abc</p>
+        <p>user</p>
+        <p>5/10 (50%)</p>
+</div>
 <div id="game-detail">
+       
+
+
 <table>
         <tr>
-        <th>player1</th><th>player2</th><th>winner</th><th>time cost</th>
+        <th>player1</th><th>player2</th><th>winner</th><th>time cost</th><th>score</th>
         </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td>
-        </tr>
-        </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td>
+                <td>abc</td><td>def</td><td>abc</td><td>172s</td><td>50</td>
         </tr>
         </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td>
+                <td>abc</td><td>def</td><td>abc</td><td>171s</td><td>58</td>
         </tr>
         </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td>
+                <td>def</td><td>def</td><td>def</td><td>333s</td><td>49</td>
         </tr>
         </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td>
+                <td>abc</td><td>def</td><td>abc</td><td>42s</td><td>52</td>
+        </tr>
+        </tr>
+                <td>abc</td><td>def</td><td>def</td><td>232s</td><td>53</td>
         </tr>
 
         
@@ -36,7 +44,9 @@
     <a> >> </a>
 </div>
 
-        <a href="index.html"><img id="back" src="img/back.png" alt="back"></a>
+        <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>
+        <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
+
 
 </div>
 </body>

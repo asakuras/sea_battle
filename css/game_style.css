@@ -1,0 +1,66 @@
+table {
+
+  border: 5px solid #c4a458;
+	border-spacing: 0;
+	display: block;
+}
+
+
+
+.standart-cell {
+  border: 1px solid grey;
+  width: 20px;
+  height: 20px;
+}
+
+.darkblue {
+  background: url('../img/game_img/putship.png');
+}
+
+
+.sank {
+  border: 2px solid black;
+  background: url('../img/game_img/sank.png');
+}
+
+.empty {
+  background: url('../img/game_img/empty.png');
+}
+
+#enemyField .empty:hover {
+background: url('../img/game_img/bomb.png');
+}
+
+.miss {
+  background: url('../img/game_img/miss.png');
+}
+
+.ship-horizontal {
+  background: url('../img/game_img/ship-horizontal.png');
+}
+
+.ship-begin-horizontal {
+  background: url('../img/game_img/ship-begin-horizontal.png');
+}
+
+.ship-end-horizontal {
+  background: url('../img/game_img/ship-end-horizontal.png');
+}
+
+.ship-vertical {
+  background: url('../img/game_img/ship-vertical.png');
+}
+
+.ship-begin-vertical {
+  background: url('../img/game_img/ship-begin-vertical.png');
+}
+
+.ship-end-vertical {
+  background: url('../img/game_img/ship-end-vertical.png');
+}
+
+
+.ship-crashed {
+  background: url('../img/game_img/ship-crashed.png');
+}
+

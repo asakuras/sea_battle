@@ -1,55 +1,104 @@
 .container{
     margin:0 auto;
     text-align:center;
-    width:1110px;
-    height:570px;
+    width:1300px;
+    height:700px;
     text-align:center;
     position: relative;
 }
 #bg-1{
     background-image: url(../img/bg-1.png);
     background-repeat: no-repeat;
+    background-position: contain;
 }
 
 #bg-2{
     background-image: url(../img/bg-2.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
 
 #bg-signin{
     background-image: url(../img/bg-signin.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
 
 #bg-signup{
     background-image: url(../img/bg-signup.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
+
 
 #bg-choosesize{
     background-image: url(../img/bg-choosesize.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
 
+#bg-signup-success{
+    background-image: url(../img/bg-signup-success.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
 
 
 #bg-lobby{
     background-image: url(../img/bg-lobby.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
 
 #bg-userinfo{
     background-image: url(../img/bg-userinfo.png);
     background-repeat: no-repeat;
+    background-position: contain;
+
 }
 
+
+#bg-game-play-10x10{
+    background-image: url(../img/bg-game-play-10x10.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
+
+#bg-game-play-7x7{
+    background-image: url(../img/bg-game-play-7x7.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
+
+#bg-game-setting-10x10{
+    background-image: url(../img/bg-game-setting-10x10.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
+
+
+#bg-game-setting-7x7{
+    background-image: url(../img/bg-game-setting-7x7.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
 
 
 div .signin{
     margin:0 auto;
     width: 600px;
     height:600px;
-    padding-top: 120px;
+    padding-top: 15%;
 }
 
 div .signin h1{
@@ -76,7 +125,7 @@ input{
     border: none ;
     font-weight: bold;
     padding-left: 10px;
-    margin-top: 35px;
+    margin-top: 20px;
     margin-left:20px;
     color:#97530b;
     background-color: #ebdac0;
@@ -93,11 +142,6 @@ input[value]{
     font-size:20px;
 }
 
-hr{
-    width: 400px;
-    color:#97530b;
-
-}
 
 span{
     color:#97530b;
@@ -113,16 +157,24 @@ a{
 
 
 }
+
+.err-msg{
+    color:#97530b;
+    font-family: Gabriola, 'Times New Roman';
+    line-height: 50px;
+    font-size: 20px;
+    padding:0;
+}
 #tourist{
-    padding-top:200px;
+    padding-top:20%;
 }
 
 #signin{
-    margin-top: 10px;
+    margin-top: 1%;
 }
 
 #about{
-    padding-top: 1%;
+    padding-top: 3%;
     width:8%;
 }
 
@@ -134,14 +186,19 @@ a{
 
 #back{
     position: absolute;
-    left:800px;
-    top:390px;
+    left:75%;
+    top:70%;
 }
 
+#home{
+    position: absolute;
+    left:85%;
+    top:70%;
+}
 #name_card{
     position: absolute;
-    left:50px;
-    top:50px;
+    left:5%;
+    top:4%;
     width:300px;
     height:200px;
 }
@@ -159,6 +216,25 @@ a{
     width:90px;
     z-index:1;
 }
+
+/* #user-inf table {
+    border-collapse: collapse;
+    width:400px;
+    margin:0 auto;
+}
+
+#user-inf table, #user-inf th, #user-inf td {
+    border: 2px solid#7d4509;
+    opacity: 0.9;
+}
+
+#user-inf th, #user-inf td {
+    padding: 5px;
+    color:#6c3b08;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:20px;
+    line-height: 20px;
+} */
 
 #username{
     position:absolute;
@@ -201,51 +277,59 @@ a{
     border:#97530b solid  0.5px;
     border-radius: 5px;
 }
-#human_mode{
-    padding-top:160px;
-    width: 300px;
+.two_box_top{
+    padding-top:15%;
+    width: 25%;
 }
 
-#ai_mode{
-    width: 300px;
+.two_box_bottom{
+    width: 25%;
+
 
 }
 
-#tenxten{
-    padding-top:160px;
-    width: 300px;
-}
 
-#sevenxseven{
-    width: 300px;
-}
-
-#game-detail{
-    height:300px;
-    width: 500px;
+#basic-info{
+    height:20%;
+    width: 20%;
     margin:0 auto;
-    padding-top:270px;
+    padding-top:13%;
 }
 
-table {
+#basic-info p{
+    height:20%;
+    color:#6c3b08;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:30px;
+    margin-top:2%;
+    margin-bottom:2%;
+
+}
+#game-detail{
+    height:30%;
+    width: 40%;
+    margin:0 auto;
+    padding-top:3%;
+}
+
+#game-detail table {
     border-collapse: collapse;
     width:400px;
     margin:0 auto;
 }
 
-table, th, td {
+#game-detail table, th, td {
     border: 2px solid#7d4509;
     opacity: 0.9;
 }
 
-th, td {
+#game-detail th, td {
     padding: 5px;
     color:#6c3b08;
     font-family: Gabriola, 'Times New Roman';
     font-size:20px;
     line-height: 20px;
 }
-
 
 #left{
     width: 20px;
@@ -256,4 +340,16 @@ th, td {
 #right{
     width: 20px;
     padding-left:100px;
+}
+
+
+#clicksignin{
+    margin-top: 23%;
+}
+
+#game_table{
+    width: 51%;
+    height:50%;
+    margin:0 auto;
+    padding-top: 12%;
 }
