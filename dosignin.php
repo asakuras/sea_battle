@@ -3,7 +3,7 @@
     include("include/util.inc.php");
 
     $username = $_POST['username'];
-    $password = $_POST['password'];
+	$password = $_POST['password'];
 
 	$user = checkPassword($username,$password);
 	if ( $user ){
@@ -11,8 +11,8 @@
         $_SESSION[ "username" ] = getUserName($user);
         $role = $_SESSION[ "role" ] = getRole($user);
 		$_SESSION[ "user_icon" ] = "img/user_icon.png";
-
-		
+		setcookie('userid',$_SESSION[ "userid" ] );
+		 		
         header("Location: lobby.php");
 	}
 	else{

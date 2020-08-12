@@ -49,6 +49,8 @@ function addTourist($username){
     global $PDO, $USER_TABLE;
     $username = $PDO->quote($username);
     $PDO->exec("INSERT INTO $USER_TABLE (username,role) VALUES($username,'tourist')");
+    $row = $PDO->query("SELECT * FROM $USER_TABLE WHERE username = $username")->fetch();
+    return $row['userid'];
 }
 //Have this username?
 function checkThisUsername($username){
