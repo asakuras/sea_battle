@@ -1,5 +1,6 @@
 seaBattle = {};
 let size = location.href.split("=")[1];
+console.log(document.cookie);
 window.onload = function () {
 	seaBattle.theGame = new seaBattle.Game();
 		if(size==10)
