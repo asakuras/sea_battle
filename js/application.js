@@ -7,4 +7,4 @@ window.onload = function () {
 			seaBattle.theGame.prepare(10,10,4);
 		else
 			seaBattle.theGame.prepare(7,7,3);
-}
+}//ruaruarua
