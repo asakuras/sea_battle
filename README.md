@@ -3,19 +3,28 @@
 This is a simple web game based on HTML/CSS/JS.
 
 ### overview
-![img](https://github.com/asakuras/sea_battle/blob/master/img/overview.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/overview.png)
 
 ### lobby
-![img](https://github.com/asakuras/sea_battle/blob/master/img/lobby.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/lobby.png)
 
 ### signin
-![img](https://github.com/asakuras/sea_battle/blob/master/img/sign_in.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/sign_in.png)
 
 ### signup
-![img](https://github.com/asakuras/sea_battle/blob/master/img/sign_up.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/sign_up.png)
 
 ### choose size
-![img](https://github.com/asakuras/sea_battle/blob/master/img/choose_size.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/choose_size.png)
 
 ### user infomation
-![img](https://github.com/asakuras/sea_battle/blob/master/img/user_information.png)
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/user_information.png)
+
+### invitation status
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/invitation_status.png)
+
+### setting_field
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/setting_field.png)
+
+### playing_game
+![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/game_playing.png)
