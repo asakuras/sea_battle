@@ -2,6 +2,8 @@
 
 $USER_TABLE = 'users';
 $BATTLE_TABLE = 'battles';
+$GAME_TABLE = 'games';
+$CHESSBOARD_TABLE = 'chessboards';
 $PDO = getPDO();
 
 //Connect database
