@@ -2,6 +2,24 @@
     include("include/util.inc.php");
     session_start();
     checkLegal();
+    $username = $_SESSION['username'];
+    $role = $_SESSION['role'];
+    $userid = $_SESSION['userid'];
+    $win_num = getWinNum($userid);
+    $all_num = getAllNum($userid);
+    $win_ratio = getWinRate($userid);
+    $infos = getBattleRecord($userid);
+    $cnt = count($infos);
+    $current_page=$_GET['current_page'];
+    $max_entry = 5;
+    $prev_page = $current_page - 1;
+    $next_page = $current_page + 1;
+    if($current_page == 1){
+        $prev_page = $current_page;
+    }
+    if($current_page == ceil($cnt / $max_entry)){
+            $next_page = $current_page;
+    }
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -15,9 +33,9 @@
 <body>
 <div id="bg-userinfo" class="container">
 <div id = "basic-info">
-        <p>abc</p>
-        <p>user</p>
-        <p>5/10 (50%)</p>
+        <p><?=$username?></p>
+        <p><?=$role?></p>
+        <p><?=$win_num. '/' . $all_num . ' ( '.$win_ratio. '% )'?></p>
 </div>
 <div id="game-detail">
        
@@ -25,28 +43,25 @@
 
 <table>
         <tr>
-        <th>player1</th><th>player2</th><th>winner</th><th>time cost</th><th>score</th>
+        <th>player1</th><th>player2</th><th>winner</th><th>score</th><th>field size</th>
         </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>172s</td><td>50</td>
-        </tr>
-        </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>171s</td><td>58</td>
-        </tr>
-        </tr>
-                <td>def</td><td>def</td><td>def</td><td>333s</td><td>49</td>
-        </tr>
-        </tr>
-                <td>abc</td><td>def</td><td>abc</td><td>42s</td><td>52</td>
-        </tr>
-        </tr>
-                <td>abc</td><td>def</td><td>def</td><td>232s</td><td>53</td>
-        </tr>
+        <?php 
+        for($i = ($current_page - 1) * $max_entry; $i  < $current_page  * $max_entry && $i < $cnt; $i++){
+                $row = $infos[$i]; ?>
 
-        
+<tr>
+
+<td><?= $row['username1'] ?></td><td><?= $row['username2'] ?></td><td><?= $row['winner'] ?></td><td><?= $row['score'] ?></td><td><?= $row['field_size'] ?></td>
+
+
+
+</tr>
+
+<?php } ?>
     </table>
-    <a> << </a>
-    <span>page 1</span>
-    <a> >> </a>
+    <a href=<?= "user_info.php?current_page=".$prev_page ?>> << </a>
+    <span>page <?= $current_page ?></span>
+    <a href=<?= "user_info.php?current_page=".$next_page ?>> >> </a>
 </div>
 
         <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>

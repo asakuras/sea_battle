@@ -124,24 +124,29 @@ function getUserName($user) {
 function getWinRate($userId){
     global $PDO, $BATTLE_TABLE;
     $userId = $PDO->quote($userId);
-    $row = $PDO->query("SELECT COUNT(*) AS winnum FROM $BATTLE_TABLE WHERE winner = $userId")->fecth();
-    $whole = $PDO->query("SELECT COUNT(*) AS allnum FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId")->fecth();
-    return round(($row['winnum']*100/$whole['allnum']),2);
+    $row = $PDO->query("SELECT COUNT(*) AS winnum FROM $BATTLE_TABLE WHERE winner = $userId")->fetch();
+    $whole = $PDO->query("SELECT COUNT(*) AS allnum FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId")->fetch();
+    if($whole['allnum'] == 0){
+        return "nan";
+    }
+    return round(($row['winnum']*100/$whole['allnum'] ),2);
 }
 //Get win num
 function getWinNum($userId){
     global $PDO, $BATTLE_TABLE;
     $userId = $PDO->quote($userId);
-    $row = $PDO->query("SELECT COUNT(*) AS num FROM $BATTLE_TABLE WHERE winner = $userId")->fecth();
+    $row = $PDO->query("SELECT COUNT(*) AS num FROM $BATTLE_TABLE WHERE winner = $userId")->fetch();
     return $row['num'];
 }
 //Get all num
 function getAllNum($userId){
-    $row = $PDO->query("SELECT COUNT(*) AS num FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId")->fecth();
+    global $PDO, $BATTLE_TABLE;
+    $row = $PDO->query("SELECT COUNT(*) AS num FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId")->fetch();
     return $row['num'];
 }
 //Get avarage time
 function getAvarageTime($userId){
+    global $PDO, $BATTLE_TABLE;
     $rows = $PDO->query("SELECT time FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId");
     $time = 0;
     $num = 0;
@@ -151,11 +156,30 @@ function getAvarageTime($userId){
     }
     return round($time/$num,2);
 }
+
+function getUserNameById($userid) {
+    global $PDO, $USER_TABLE;
+    $userid = $PDO->quote($userid);
+    $row = $PDO->query("SELECT username FROM $USER_TABLE WHERE userid = $userid")->fetch();
+    return $row['username'];
+}
+
 //Get battle record
 function getBattleRecord($userId){
+    global $PDO, $BATTLE_TABLE;
     $rows = $PDO->query("SELECT * FROM $BATTLE_TABLE WHERE user1 = $userId OR user2 = $userId");
-    return $rows;
+    $rets = array();
+    foreach($rows as $row){
+        $row['username1']=getUserNameById($row['user1']);
+        $row['username2']=getUserNameById($row['user2']);
+        $row['winner']=getUserNameById($row['winner']);
+        $rets[]=$row;
+
+    }
+    return $rets;
 }
+
+
 
 //Delete tourist from database when logout
 function deleteTourist($touristId){
@@ -163,7 +187,7 @@ function deleteTourist($touristId){
     $touristId = $PDO->quote($touristId);
     $row = $PDO->query("SELECT * FROM $USER_TABLE WHERE userid = $touristId")->fetch();
     if($row && $row['role']=="tourist"){
-        $PDO->execute("DELETE FROM $USER_TABLE WHERE userid = $touristId");
+        $PDO->exec("DELETE FROM $USER_TABLE WHERE userid = $touristId");
         return true;
     }
     return false;

@@ -23,7 +23,7 @@
     <img id="user-info" src=<?=$role_img?> alt=<?=$role?>>
     <p id="username"><?=$username?></p>
     <p id="role"><?=$role?></p>
-    <span><a href="user_info.php" id="view_detail">view detail</a> <a href="dosignout.php" id="sign_out">sign out</a><span>
+    <span><a href="user_info.php?current_page=1" id="view_detail">view detail</a> <a href="dosignout.php" id="sign_out">sign out</a><span>
     
 </div>  
     
