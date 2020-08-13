@@ -1,3 +1,11 @@
+<?php
+    include("include/util.inc.php");
+    session_start();
+    checkLegal();
+    if(isset($_GET['size'])){
+        setcookie('size',$_GET['size']);
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>

@@ -1,3 +1,8 @@
+<?php
+    include("include/util.inc.php");
+    session_start();
+    checkLegal();
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>

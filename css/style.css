@@ -64,6 +64,20 @@
 }
 
 
+#bg-seek{
+    background-image: url(../img/bg-seek.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+
+}
+
+#bg-about{
+    background-image: url(../img/bg-about.png);
+    background-repeat: no-repeat;
+    background-position: contain;
+}
+
+
 #bg-game-play-10x10{
     background-image: url(../img/bg-game-play-10x10.png);
     background-repeat: no-repeat;
@@ -217,24 +231,34 @@ a{
     z-index:1;
 }
 
-/* #user-inf table {
-    border-collapse: collapse;
-    width:400px;
+#invitation-table{
+    width: 30%;
+    height:50%;
     margin:0 auto;
-}
-
-#user-inf table, #user-inf th, #user-inf td {
-    border: 2px solid#7d4509;
-    opacity: 0.9;
-}
-
-#user-inf th, #user-inf td {
-    padding: 5px;
-    color:#6c3b08;
+    padding-top: 16%;
+    color:#97530b;
     font-family: Gabriola, 'Times New Roman';
-    font-size:20px;
-    line-height: 20px;
-} */
+    font-size:25px;
+}
+#invitation-table ul{
+    text-align: left;
+}
+#invitation-table ul a{
+
+    color:#97530b;
+    padding:3px;
+    margin-left:40%;
+    line-height: 16px;
+    font-family: Gabriola, 'Times New Roman';
+    font-size:16px;
+    border:#97530b solid  0.5px;
+    border-radius: 5px;
+}
+
+#invitation-table img{
+    margin-top: 8%;
+}
+
 
 #username{
     position:absolute;

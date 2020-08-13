@@ -8,13 +8,14 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<div id="bg-1" class="container">
-    <a href="tourist.php"><img id="tourist" src="img/tourist.png" alt="tourist"></a>
-    <br>
-    <a href="signin.php"><img id="signin" src="img/signin.png" alt="signin"></a>
-    <br>
-    <a href="about.php"><img id="about" src="img/about.png" alt="about"></a>
+<div id="bg-about" class="container">
+  
+
+   
+        <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>
+        <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
+
+
 </div>
 </body>
 </html>
-<!-- abdc -->

@@ -1,5 +1,7 @@
 <?php
-include("include/util.inc.php");
+    include("include/util.inc.php");
+    session_start();
+    checkLegal();
 $username=$_POST['username'];
 $password1=$_POST['password1'];
 $password2=$_POST['password2'];
@@ -14,7 +16,7 @@ else{
     register($username,password_hash($password1,PASSWORD_DEFAULT));
 }
 
-header("Location: signup_success.html");
+header("Location: signup_success.php");
 
 
 

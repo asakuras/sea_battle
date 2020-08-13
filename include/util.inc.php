@@ -98,6 +98,11 @@ function printErrMsg($err){
       
 }
 
+function checkLegal(){
+    if(!isset($_SESSION['role'])){
+        header("Location: index.php");
+    }
+}
 
 
 //Get userid

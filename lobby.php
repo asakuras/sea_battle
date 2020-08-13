@@ -1,14 +1,10 @@
 <?php
+    include("include/util.inc.php");
     session_start();
-    if(!isset($_SESSION['role'])){
-        header("Location: index.php");
-    }
+    checkLegal();
     $role = $_SESSION['role'];
     $role_img = $_SESSION['user_icon'];
     $username = $_SESSION['username'];
-    print($_COOKIE['userid']);
-    
-
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -31,9 +27,10 @@
     
 </div>  
     
-    <a href="choose_size.php"><img class="two_box_top" src="img/human_mode.png" alt="human_mode"></a>
+    <a href="choose_size.php?mode=human">
+    <img class="two_box_top" src="img/human_mode.png" alt="human_mode"></a>
     <br>
-    <a href="choose_size.php"><img class="two_box_bottom" src="img/ai_mode.png" alt="ai_mode"></a>
+    <a href="choose_size.php?mode=ai"><img class="two_box_bottom" src="img/ai_mode.png" alt="ai_mode"></a>
     <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>
     <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
 

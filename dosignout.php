@@ -1,7 +1,7 @@
 <?php
-    session_start();
     include("include/util.inc.php");
-
+    session_start();
+    checkLegal();
     if($_SESSION[ "role" ] == 'tourist'){
         deleteTourist($_SESSION['userid']);
     }

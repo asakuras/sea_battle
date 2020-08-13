@@ -1,7 +1,7 @@
 <?php
-    session_start();
     include("include/util.inc.php");
-
+    session_start();
+    checkLegal();
     $username = $_POST['username'];
 	$password = $_POST['password'];
 
