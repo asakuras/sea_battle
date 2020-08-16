@@ -9,7 +9,7 @@ $_SESSION['mode'] = $_GET['mode'];
 $mode = $_SESSION['mode'];
 $link=array('game.php?size=10','game.php?size=7');
 if($mode == "human"){
-$link = array('matching_player.php?size=10','matching_player.php?size=7');
+$link = array('matching_player.php?size=10&current_page=1','matching_player.php?size=7&current_page=1');
 }
 ?>
 <!DOCTYPE HTML>

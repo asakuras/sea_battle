@@ -203,6 +203,19 @@ a{
     left:75%;
     top:70%;
 }
+#your_turn{
+    position: absolute;
+    left:10%;
+    top:38%;
+    display: none;
+}
+
+#opponent_turn{
+    position: absolute;
+    left:78%;
+    top:38%;
+    display: none;
+}
 
 #home{
     position: absolute;
@@ -242,12 +255,17 @@ a{
 }
 #invitation-table ul{
     text-align: left;
+    width:100%;
+    height:63%;
 }
-#invitation-table ul a{
+#invitation-table div{
+    float:right;
+}
 
+#invitation-table ul a{
     color:#97530b;
     padding:3px;
-    margin-left:40%;
+    margin-right:5%;
     line-height: 16px;
     font-family: Gabriola, 'Times New Roman';
     font-size:16px;

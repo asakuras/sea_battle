@@ -1,10 +1,6 @@
 <?php
-    session_start();
     include("include/util.inc.php");
-    checkLegal();
     $userid = $_GET['userid'];
-    
-
     $userid = $PDO->quote($userid);
 
     $row = $PDO->query("SELECT gid, ismatch，user2 FROM $GAME_TABLE WHERE user1=$userid")->fetch();
