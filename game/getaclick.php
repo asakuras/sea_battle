@@ -18,9 +18,16 @@
     $nextflagforsql = $PDO->quote($nextflag);
 
 
+    $hasrecord = $PDO->query("SELECT count(*) AS num FROM $STEP_TABLE WHERE userid=$useridforsql")->fetch();
 
-    $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql) 
-    ON DUPLICATE KEY UPDATE userid=$useridforsql, x=$xforsql, y=$yforsql, islast=$isfinishforsql");
+    if($hasrecord['num']==0){
+        $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql)");
+    }
+    else if($hasrecord['num']==1){
+        $PDO->exec("UPDATE $STEP_TABLE SET x=$xforsql,y=$yforsql,islast=$isfinishforsql WHERE userid=$useridforsql");
+    }
+
+    
 
     if($isfinish == 1){
         //游戏结束

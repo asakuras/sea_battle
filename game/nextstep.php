@@ -5,5 +5,5 @@
     include("include/util.inc.php");
     checkLegal();
 
-    
+    $opponent = $_GET['opponent'];
 ?>
