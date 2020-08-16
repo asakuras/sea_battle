@@ -4,12 +4,23 @@
     include("include/util.inc.php");
     checkLegal();
 
-    $userid = $_GET['userid'];
-    $userid = $PDO->quote($userid);
+    $userid = $_SESSION['userid'];
+    $useridforsql = $PDO->quote($userid);
 
-    $row = $PDO->query("SELECT * FROM $BATTLE_TABLE WHERE user1=$userid OR user2=$userid")->fetch();
+    $row = $PDO->query("SELECT * FROM $BATTLE_TABLE WHERE user1=$useridforsql OR user2=$useridforsql")->fetch();
 
-    if($row['']){
-        echo json_encode([]);
+    if($row['ismatch']){
+        $firstmove=0;
+        if($row['firstmove'] == $userid) $firstmove=1;
+        $opponetid=0;
+        if($row['user1'] == $useridforsql){
+            $opponetid = $row['user2'];
+        }
+        else{
+            $opponetid = $row['user1'];
+        }
+        $opponetidforsql =$PDO->quote($opponetid);
+        $chessrow = $PDO->query("SELECT * FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql");
+        echo json_encode([ 'start' => 1, 'firstmove' => $firstmove, 'opponentboard' => $chessrow['boardstring'] ]);
     }
 ?>

@@ -9,5 +9,5 @@
 
     $userid = $PDO->quote($userid);
     $chessBoard = $PDO->quote($chessBoard);
-    $PDO->exec("INSERT INTO $CHESSBOARD_TABLE (userid,chessboard) VALUES($userid, $chessBoard)");
+    $PDO->exec("INSERT INTO $CHESSBOARD_TABLE (userid,boardstring) VALUES($userid, $chessBoard)");
 ?>
