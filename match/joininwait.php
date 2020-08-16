@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include("include/util.inc.php");
+    checkLegal();
     $userid = $_SESSION['userid'];
     $userid=$PDO->qoute($userid);
 

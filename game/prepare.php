@@ -4,7 +4,7 @@
     include("include/util.inc.php");
     checkLegal();
 
-    $userid = $_POST['userid'];
+    $userid = $_SESSION['userid'];
     $chessBoard = $_POST['chessboard'];
 
     $userid = $PDO->quote($userid);

@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include("include/util.inc.php");
+    checkLegal();
     $userid = $_SESSION['userid'];
     //choose which userid to play
     $chooseid = $_POST['chooseid'];

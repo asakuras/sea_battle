@@ -19,7 +19,8 @@
 
 
 
-    $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql) ON DUPLICATE KEY UPDATE userid=$useridforsql, x=$xforsql, t=$yforsql, islast=$isfinishforsql");
+    $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql) 
+    ON DUPLICATE KEY UPDATE userid=$useridforsql, x=$xforsql, y=$yforsql, islast=$isfinishforsql");
 
     if($isfinish == 1){
         //游戏结束
