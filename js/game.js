@@ -38,8 +38,7 @@ seaBattle.Game = function () {
 	};
 	
 	this.start = function  (requestShip,First,mode) {
-		this.enemyField.draw('enemyField');
-		if(mode==='human'){
+		if(mode=='human'){
 			let ships=requestShip.split(',');
 			let nShip=0;
 			for (let k = 0; k < this.playerField.maxShipSize ; k++) {
@@ -56,6 +55,7 @@ seaBattle.Game = function () {
 				}
 			}
 			if(!First){
+				this.enemyField.draw('enemyField');
 				document.getElementById('your_turn').style.display='none';
 				document.getElementById('opponent_turn').style.display='';
 				this.enemyField.delCelEvents();
@@ -66,7 +66,10 @@ seaBattle.Game = function () {
 				document.getElementById('opponent_turn').style.display='none';
 			}
 		}
-		else this.enemyField.arrangeShipRandomly();
+		else {
+			this.enemyField.arrangeShipRandomly();
+			this.enemyField.draw('enemyField');
+		}
 		let div = document.querySelector(".container");
 		let width = this.playerField.width;
 		if(width == 10){
@@ -97,7 +100,7 @@ seaBattle.Game = function () {
 				}
 				else {
 					let timer=setInterval(function () {
-						ajaxRequest('nextstep.php','get',{opponent:opponent},
+						ajaxRequest('game/nextstep.php','get',{opponent:opponent},
 							function () {
 								enemyField.addCelEvents();
 								clearInterval(timer);
@@ -144,7 +147,7 @@ seaBattle.Game = function () {
 		let playerField=this.playerField;
 		let thisGame=this;
 		timer=setInterval(function (){
-			ajaxRequest('nextstep.php','get',{opponent:opponent},
+			ajaxRequest('game/nextstep.php','get',{opponent:opponent},
 				function () {
 					let result=JSON.parse(this.responseText);
 					let state;

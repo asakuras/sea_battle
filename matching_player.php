@@ -31,6 +31,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/logo.ico" type="images/x-ico" />
 <link rel="stylesheet" href="css/style.css" type="text/css">
+<script src = "js/seek.js"></script>
+<script src="js/simpleajax.js"></script>
+
+
 </head>
 <body>
 <div id="bg-seek" class="container">

@@ -1,13 +1,13 @@
 <?php
     session_start();
-    include("include/util.inc.php");
+    include("../include/util.inc.php");
     checkLegal();
     $userid = $_SESSION['userid'];
     //choose which userid to play
     $chooseid = $_POST['chooseid'];
 
-    $user1 = $PDO->qoute($chooseid);
-    $user2 = $PDO->qoute($userid);
+    $user1 = $PDO->quote($chooseid);
+    $user2 = $PDO->quote($userid);
 
     $row = $PDO->query("SELECT ismatch FROM $GAME_TABLE WHERE user1=$user1")->fetch();
     if($row['ismatch'] == 0){

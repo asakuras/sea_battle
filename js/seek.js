@@ -1,13 +1,15 @@
-seaBattle.Seek=function () {
+window.onload=function(){
     let seek_player=document.getElementById('seek_player');
-    let acceptOthers=document.getElementById('invitation-table').querySelectorAll('a');
-    for(let i=0;i<5;i++){
+    let acceptOthers=document.getElementById('invitation-table').querySelectorAll('ul a');
+    for(let i=0;i<acceptOthers.length;i++){
         acceptOthers[i].onclick=selectone;
     }
 
     seek_player.onclick=function () {
-        ajaxRequest('joininwait.php','post',{},
+        seek_player.setAttribute("src","img/seeking.png");
+        ajaxRequest('match/joininwait.php','post',{},
             function () {
+                console.log("join in table");
                 tellstart();
             },function () {
                 console.log('fail to join in table');
@@ -15,8 +17,10 @@ seaBattle.Seek=function () {
     };
 
     function selectone() {
-        let user2id=acceptOthers.getAttribute('userid');
-        ajaxRequest('selectone.php','post',{chooseid:user2id},
+
+        let user2id=this.getAttribute('userid');
+        console.log(user2id);
+        ajaxRequest('match/selectone.php','post',{chooseid:user2id},
             function () {
                 tellstart();
             },function () {
@@ -28,8 +32,9 @@ seaBattle.Seek=function () {
         let ismatch=null;
         let opponent=null;
         let timer=setInterval(function () {
-            ajaxRequest('tellstart.php','get',{},
+            ajaxRequest('match/tellstart.php','get',{},
                 function () {
+                    console.log(this.responseText);
                     let result=JSON.parse(this.responseText);
                     ismatch=result.ismatch;
                     opponent=result.opponent;
@@ -44,4 +49,4 @@ seaBattle.Seek=function () {
                 })
         },500);
     }
-};
+}

@@ -143,28 +143,30 @@ seaBattle.Field = function (width, height,maxShipSize) {
 			//checks if all ships are placed
 			if ((s == 0) && (n == this.maxShipSize-1)) {
 				this.delCelEvents();
-				if(mode==='human'){
-					ajaxRequest('prepare.php','post',{chessboard:ajaxShip},
+				if(mode=='human'){
+					ajaxRequest('game/prepare.php','post',{chessboard:ajaxShip},
 						function () {
 							console.log("Wait a moment for your enemy.");
 							ready=true;
+							let timer=setInterval(function () {
+								ajaxRequest('game/waitstart.php','get',{},
+									function () {
+										console.log(this.responseText);
+										let result=JSON.parse(this.responseText);
+										requestShip=result.opponentboard;//对手棋盘信息
+										First=result.firstmove;//先手信息
+										seaBattle.theGame.start(requestShip,First,mode);
+										clearInterval(timer);
+										timer=null;
+									},function () {
+										console.log("无响应500");
+									})
+							},800);
 						},function () {
 							alert("Maybe you are offline.");
 						});
 					if(ready){
-						let timer=setInterval(function () {
-							ajaxRequest('waitstart.php','get',{},
-								function () {
-									let result=JSON.parse(this.responseText);
-									requestShip=result.opponentboard;//对手棋盘信息
-									First=result.firstmove;//先手信息
-									seaBattle.theGame.start(requestShip,First,mode);
-									clearInterval(timer);
-									timer=null;
-								},function () {
-									console.log("无响应500");
-								})
-						},800);
+						
 					}
 				}
 				else seaBattle.theGame.start(null,null,mode);

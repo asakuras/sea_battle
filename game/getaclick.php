@@ -1,7 +1,7 @@
 <?php
 //获得走的人这一步的信息
     session_start();
-    include("include/util.inc.php");
+    include("../include/util.inc.php");
     checkLegal();
 
     $userid = $_SESSION['userid'];

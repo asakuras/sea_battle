@@ -20,6 +20,7 @@
 <body>
 <div id="bg-game-play" class="container">
 <div id="game_table">
+<script src="js/simpleajax.js"></script>
 <script src="js/application.js"></script>
 <script src = "js/field.js"></script>
 <script src = "js/cell.js"></script>

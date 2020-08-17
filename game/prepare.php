@@ -1,7 +1,7 @@
 <?php
     //接收棋盘信息
     session_start();
-    include("include/util.inc.php");
+    include("../include/util.inc.php");
     checkLegal();
 
     $userid = $_SESSION['userid'];
