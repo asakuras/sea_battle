@@ -14,6 +14,8 @@
             $win_ratio = getWinRate($userid);
             $info = $username.' '.$win_num. '/' . $all_num . ' ( '.$win_ratio. '% )';
             $row['info']=$info;
+            $row['userid']=$userid;
+            unset($row['user1']);
             $rets[]=$row;
 
         }

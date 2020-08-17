@@ -7,6 +7,7 @@ if(isset($_GET['mode'])){
 $_SESSION['mode'] = $_GET['mode'];
 }
 $mode = $_SESSION['mode'];
+setcookie('mode', $mode);
 $link=array('game.php?size=10','game.php?size=7');
 if($mode == "human"){
 $link = array('matching_player.php?size=10&current_page=1','matching_player.php?size=7&current_page=1');

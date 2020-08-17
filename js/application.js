@@ -1,3 +1,4 @@
+//construct a dictionary named cookies for easy use
 let cookies = (function(){
 	cookie = {};
 	lines = document.cookie.split(';')
@@ -8,7 +9,13 @@ let cookies = (function(){
 	return cookie;
 }());
 
+//just using the "cookies" as a dictionary;
+console.log(cookies);
 let size = cookies['size'];
+let mode = cookies['mode'];
+let userid = cookies['userid'];
+
+
 seaBattle = {};
 window.onload = function () {
 	seaBattle.theGame = new seaBattle.Game();

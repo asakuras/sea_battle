@@ -38,14 +38,14 @@
         <ul>
         <?php  for ($i = ($current_page - 1) * $max_entry; $i  < $current_page  * $max_entry && $i < $cnt; $i++){
                 $row = $rows[$i]; ?>
-            <li> <?= $row['info'] ?><div><a >accept</a></div></li>
+            <li> <?= $row['info'] ?><div><a userid=<?= $row['userid'] ?>>accept</a></div></li>
         <?php } ?>
           
     </ul>
     <a href=<?= "matching_player.php?size=$size&current_page=".$prev_page ?>> << </a>
     <span>page <?= $current_page ?></span>
     <a href=<?= "matching_player.php?size=$size&current_page=".$next_page ?>> >> </a>
-    <a ><img src="img/seek_for_friend.png"></a>
+    <a ><img id="seek_player" src="img/seek_for_friend.png"></a>
 </div>
    
         <a href="lobby.php"><img id="back" src="img/back.png" alt="back"></a>
