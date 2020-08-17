@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2020-08-16 14:48:27
+-- 生成日期： 2020-08-17 10:17:47
 -- 服务器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -90,7 +90,8 @@ CREATE TABLE `steps` (
   `userid` int(11) NOT NULL,
   `x` int(11) NOT NULL,
   `y` int(11) NOT NULL,
-  `islast` int(11) NOT NULL DEFAULT 0
+  `islast` int(11) NOT NULL DEFAULT 0,
+  `nextflag` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -176,7 +177,7 @@ ALTER TABLE `games`
 -- 使用表AUTO_INCREMENT `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `users`
