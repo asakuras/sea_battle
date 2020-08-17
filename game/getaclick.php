@@ -5,6 +5,7 @@
     checkLegal();
 
     $userid = $_SESSION['userid'];
+    $$opponent = $_POST['opponent'];
     $position = $_POST['position'];
     $x = $position / 10;
     $y = $position % 10;
@@ -17,20 +18,36 @@
     $isfinishforsql = $PDO->quote($isfinish);
     $nextflagforsql = $PDO->quote($nextflag);
 
+    $opponentforsql = $PDO->quote($opponent);
+    $nextflagopponentforsql = $PDO->quote($nextflag^1);
 
-    $hasrecord = $PDO->query("SELECT count(*) AS num FROM $STEP_TABLE WHERE userid=$useridforsql")->fetch();
 
-    if($hasrecord['num']==0){
-        $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql)");
-    }
-    else if($hasrecord['num']==1){
-        $PDO->exec("UPDATE $STEP_TABLE SET x=$xforsql,y=$yforsql,islast=$isfinishforsql WHERE userid=$useridforsql");
-    }
+
+    //$hasrecord = $PDO->query("SELECT count(*) AS num FROM $STEP_TABLE WHERE userid=$useridforsql")->fetch();
+
+    //if($hasrecord['num']==0){
+    //    $PDO->exec("INSERT INTO $STEP_TABLE (userid,x,y,islast,nextflag) VALUES ($useridforsql,$xforsql,$yforsql,$isfinishforsql,$nextflagforsql)");
+    //}
+    //else if($hasrecord['num']==1){
+        $PDO->exec("UPDATE $STEP_TABLE SET x=$xforsql,y=$yforsql,islast=$isfinishforsql,nextflag=$nextflagforsql WHERE userid=$useridforsql");
+        $PDO->exec("UPDATE $STEP_TABLE SET nextflag=$nextflagopforsql WHERE userid=$opponentforsql");
+    //}
 
     
 
     if($isfinish == 1){
+        $size = $PDO->quote($_SESSION['size']);
         //游戏结束
+        //battles加一行对战信息
+        $PDO->exec("INSERT INTO $BATTLE_TABLE(user1,user2,winner,filedsize) VALUES($useridforsql,$opponentforsql,$useridforsql,$size)");
+        //chessboard删除两条
+        $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$useridforsql");
+        $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$opponentforsql");
+        //games删除一条
+        $PDO->exec("DELETE FROM $GAME_TABLE WHERE user1=$useridforsql OR user2=$useridforsql");
+        //steps删除两条
+        $PDO->exec("DELETE FROM $STEP_TABLE WHERE userid=$useridforsql");
+        $PDO->exec("DELETE FROM $STEP_TABLE WHERE userid=$opponentforsql");
     }
 
 ?>

@@ -20,7 +20,10 @@
             $opponetid = $row['user1'];
         }
         $opponetidforsql =$PDO->quote($opponetid);
-        $chessrow = $PDO->query("SELECT * FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql");
+        $firstmoveforsql = $PDO->quote($firstmove);
+        $chessrow = $PDO->query("SELECT * FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql")->fetch();
+        $PDO->exec("INSERT INTO $STEP_TABLE (userid,nextflag) VALUES ($useridforsql,$firstmoveforsql)");
+
         echo json_encode([ 'start' => 1, 'firstmove' => $firstmove, 'opponentboard' => $chessrow['boardstring'] ]);
     }
 ?>
