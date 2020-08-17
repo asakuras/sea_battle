@@ -21,9 +21,16 @@
         }
         $opponetidforsql =$PDO->quote($opponetid);
         $firstmoveforsql = $PDO->quote($firstmove);
-        $chessrow = $PDO->query("SELECT * FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql")->fetch();
-        $PDO->exec("INSERT INTO $STEP_TABLE (userid,nextflag) VALUES ($useridforsql,$firstmoveforsql)");
+        
+        $chessrow = $PDO->query("SELECT count(*) AS num FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql");
+        if($chessrow['num']==1){
+            $chessrow = $PDO->query("SELECT * FROM $CHESSBOARD_TABLE WHERE userid=$opponetidforsql")->fetch();
+            
+            $PDO->exec("INSERT INTO $STEP_TABLE (userid,nextflag) VALUES ($useridforsql,$firstmoveforsql)");
 
-        echo json_encode([ 'start' => 1, 'firstmove' => $firstmove, 'opponentboard' => $chessrow['boardstring'] ]);
+            echo json_encode([ 'start' => 1, 'firstmove' => $firstmove, 'opponentboard' => $chessrow['boardstring'] ]);
+        }
+
+        
     }
 ?>

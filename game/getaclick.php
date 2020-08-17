@@ -5,7 +5,7 @@
     checkLegal();
 
     $userid = $_SESSION['userid'];
-    $$opponent = $_POST['opponent'];
+    $opponent = $_POST['opponent'];
     $position = $_POST['position'];
     $x = $position / 10;
     $y = $position % 10;
