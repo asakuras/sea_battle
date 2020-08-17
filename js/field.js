@@ -14,6 +14,12 @@ seaBattle.Field = function (width, height,maxShipSize) {
 		h = false,
 		v = false;
 
+	let ajaxShip = [];
+	let pointShip = 0;
+	let requestShip=null;
+	let ready=false,
+		First=false;
+
 	for (var i = 0; i < width; i++) {
 		this.cells.push([]);
 		for (var j = 0; j < height; j++) {
@@ -63,17 +69,27 @@ seaBattle.Field = function (width, height,maxShipSize) {
 		}
 	}
 
-this.delCelEvents = function () {
-	for (var i = 0; i < width; i++) {
-	for (var j = 0; j < height; j++) {
-	this.cells[i][j].delEvent('click');
+	this.addCelEvents = function () {
+		for (let i = 0; i < width; i++) {
+			for (let j = 0; j < height; j++) {
+				if(this.cells[i][j].state=='empty') {
+					this.cells[i][j].addEvent('click');
+				}
+			}
+		}
+	};
+
+	this.delCelEvents = function () {
+		for (var i = 0; i < width; i++) {
+		for (var j = 0; j < height; j++) {
+		this.cells[i][j].delEvent('click');
+		}
+		}
 	}
-	}	
-}
 
 	//Arranges ships randomly
 	this.arrangeShipRandomly = function ( ) {
-	
+
 		for (s; s >= 0 ; s--) {
 			for (n =0 ; n < (this.maxShipSize - s); n++) {
 				size = this.ships[s][n].size;
@@ -112,14 +128,14 @@ this.delCelEvents = function () {
 					this.ships[s][n].orientation = 'horizontal'
 				}
 				else {
-					message = ( (y-lastY) < 0) ? 'И как ты себе это представляешь? (нельзя расположить корабль по диагонали)' :
-					'Отсыпь немного, а?';
+					let message=null;
+					if(x == lastX) message = "Your ship can\'t be vertical！";
+					else if (y != lastY) message = "You can\'t put your ship except vertical or horizontal!";
+					else if((y==lastY)&&v) message = "Your ship can\'t be horizontal！";
 					alert (message);
 					return;
 				}
 			}
-			
-			
 
 			this.putShip(this.ships[s][n], lastX, lastY);
 			this.ships[s][n].draw();
@@ -127,7 +143,31 @@ this.delCelEvents = function () {
 			//checks if all ships are placed
 			if ((s == 0) && (n == this.maxShipSize-1)) {
 				this.delCelEvents();
-				seaBattle.theGame.start();
+				if(mode==='human'){
+					ajaxRequest('prepare.php','post',{chessboard:ajaxShip},
+						function () {
+							console.log("Wait a moment for your enemy.");
+							ready=true;
+						},function () {
+							alert("Maybe you are offline.");
+						});
+					if(ready){
+						let timer=setInterval(function () {
+							ajaxRequest('waitstart.php','get',{},
+								function () {
+									let result=JSON.parse(this.responseText);
+									requestShip=result.opponentboard;//对手棋盘信息
+									First=result.firstmove;//先手信息
+									seaBattle.theGame.start(requestShip,First,mode);
+									clearInterval(timer);
+									timer=null;
+								},function () {
+									console.log("无响应500");
+								})
+						},800);
+					}
+				}
+				else seaBattle.theGame.start(null,null,mode);
 				return;
 			}
 			

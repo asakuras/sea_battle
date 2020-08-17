@@ -1,5 +1,5 @@
 //construct a dictionary named cookies for easy use
-let cookies = (function(){
+function setcookie(){
 	cookie = {};
 	lines = document.cookie.split(';')
 	for(var l of lines){
@@ -7,7 +7,8 @@ let cookies = (function(){
 		cookie[entry[0]] = entry[1];
 	}
 	return cookie;
-}());
+}
+let cookies = setcookie();
 
 //just using the "cookies" as a dictionary;
 console.log(cookies);

@@ -18,6 +18,8 @@ seaBattle.Cell = function (x, y) {
 	this.ship = null;
 	this.td = null;
 	this.field = null;
+
+	let user2id=setcookie()['opponent'];
 	
 	this.setClassName = function (state) {
 		this.td.className = (state == 'sank') ? state : ('standart-cell '+ state);   
@@ -35,16 +37,9 @@ seaBattle.Cell = function (x, y) {
 			this.td.addEventListener('click', handlerClick );
 		}
 		else {
-			// Player`s field. Clicks are used to arrange ships 
-			if (randomly) {
-				this.td.className = 'standart-cell '+this.state;
-			}
-		//If player chose random arrangement of his ships
-			else {
-				this.td.className = 'standart-cell '+this.state;
-				handlerClick = this.clicked.bind(this);
-				this.td.addEventListener('click', handlerClick);
-			}
+			this.td.className = 'standart-cell '+this.state;
+			handlerClick = this.clicked.bind(this);
+			this.td.addEventListener('click', handlerClick);
 		}
 		return this.td;
 	};
@@ -59,24 +54,51 @@ seaBattle.Cell = function (x, y) {
 		seaBattle.theGame.priority(shotResult);
 	}
 
-	
+	this.addEvent = function (event) {
+		this.td.addEventListener(event, handlerClick );
+	};
+
 	this.delEvent = function (event) {
 		this.td.removeEventListener(event, handlerClick );
 	}
 	
 	//cheks shot result
 	this.checkShot = function () {
+		let flag=0;
 		if (this.state == 'empty') {
 			this.state ='miss';
+			if(mode==='human'){
+				flag=0;
+				ajaxRequest('getaclick.php','post',{position:this.x*10+this.y,nextflag:flag,isfinish:0,opponent:user2id},
+					function () {
+						console.log('wait for your opponent');
+					},
+					function () {
+						alert("Maybe you are offline.");
+					});
+			}
 		}
 		else {
 			this.ship.lives --;
 			if (this.ship.lives == 0) {
 				this.ship.draw ('sank');
 				this.state = 'sank';
+				flag=2;
 			}
 			else {
 				this.state = 'ship-crashed';
+				flag=1;
+			}
+			if(mode==='human'){
+				let end = this.checkShipsLeft()==1?0:1;
+				ajaxRequest('getaclick.php','post',{position:this.x*10+this.y,nextflag:flag,isfinish:end,opponent:user2id},
+					function () {
+						if(end)console.log('你赢了');
+						else console.log('继续点击');
+					},
+					function () {
+						alert("Maybe you are offline.");
+					});
 			}
 		}
 		this.setClassName(this.state);

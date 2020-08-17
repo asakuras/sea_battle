@@ -31,6 +31,6 @@ seaBattle.Ship = function (size) {
 	}
 	
 	
-}
+};
 
 
