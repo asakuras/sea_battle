@@ -31,12 +31,13 @@
     //}
 
     
+    echo json_encode([ 'type' => gettype($isfinish), 'value' => $isfinish]);
 
     if($isfinish == 1){
         $size = $PDO->quote($_SESSION['size']);
         //游戏结束
         //battles加一行对战信息
-        $PDO->exec("INSERT INTO $BATTLE_TABLE(user1,user2,winner,filedsize) VALUES($useridforsql,$opponentforsql,$useridforsql,$size)");
+        $PDO->exec("INSERT INTO $BATTLE_TABLE(user1,user2,winner,fieldsize) VALUES($useridforsql,$opponentforsql,$useridforsql,$size)");
         //chessboard删除两条
         $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$useridforsql");
         $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$opponentforsql");
