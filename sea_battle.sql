@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2020-08-18 14:52:59
+-- 生成日期： 2020-08-18 15:55:01
 -- 服务器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -77,7 +77,8 @@ CREATE TABLE `games` (
   `user1` int(20) NOT NULL,
   `user2` int(20) DEFAULT NULL,
   `ismatch` int(1) NOT NULL,
-  `firstmove` int(20) NOT NULL
+  `firstmove` int(20) NOT NULL,
+  `fieldsize` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -172,7 +173,7 @@ ALTER TABLE `chessboards`
 -- 使用表AUTO_INCREMENT `games`
 --
 ALTER TABLE `games`
-  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- 使用表AUTO_INCREMENT `steps`
