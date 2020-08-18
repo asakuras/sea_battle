@@ -33,7 +33,7 @@
 <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
 <img id="your_turn" src="img/your_turn.png" alt="your turn">
 <img id="opponent_turn" src="img/opponent_turn.png" alt="opponent turn">
-<img id="win_status" src = "img/win.png" alt = "win status">
+<img  id="win_status" src = "img/win.png" alt = "win status">
 </div>
 
 </body>

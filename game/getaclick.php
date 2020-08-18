@@ -31,9 +31,9 @@
     //}
 
     
-    echo json_encode([ 'type' => gettype($isfinish), 'value' => $isfinish]);
-
+    
     if($isfinish == 1){
+        sleep(2);
         $size = $PDO->quote($_SESSION['size']);
         //游戏结束
         //battles加一行对战信息

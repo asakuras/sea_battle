@@ -43,7 +43,7 @@
 
 <table>
         <tr>
-        <th>player1</th><th>player2</th><th>winner</th><th>score</th><th>field size</th>
+        <th>player1</th><th>player2</th><th>winner</th><th>field size</th>
         </tr>
         <?php 
         for($i = ($current_page - 1) * $max_entry; $i  < $current_page  * $max_entry && $i < $cnt; $i++){
@@ -51,7 +51,7 @@
 
 <tr>
 
-<td><?= $row['username1'] ?></td><td><?= $row['username2'] ?></td><td><?= $row['winner'] ?></td><td><?= $row['score'] ?></td><td><?= $row['fieldsize'] ?></td>
+<td><?= $row['username1'] ?></td><td><?= $row['username2'] ?></td><td><?= $row['winner'] ?></td><td><?= $row['fieldsize'] ?></td>
 
 
 

@@ -144,13 +144,17 @@ seaBattle.Game = function () {
 		console.log(totalShips + " " + playerShipsCrashed);
 		let win_status = document.getElementById("win_status");
 		if (playerShipsCrashed == totalShips)  {
+			win_status.setAttribute('src','img/lose.png');
+			win_status.style.display='inline';
 			this.enemyField.drawLiveShips();
 			this.enemyField.delCelEvents();
-			return 0;
+			delete seaBattle;
 		}
 		else {
 			if (enemyShipsCrashed == totalShips) {
 				this.enemyField.delCelEvents();
+				win_status.setAttribute('src','img/win.png');
+				win_status.style.display='inline';
 				return 1;
 			}
 		}
@@ -195,6 +199,8 @@ seaBattle.Game = function () {
 						else if(end){
 							thisGame.enemyField.drawLiveShips();
 							document.getElementById('opponent_turn').style.display='none';
+							document.getElementById('win_status').setAttribute('src','img/lose.png');
+							document.getElementById('win_status').style.display='inline';
 							clearInterval(timer);
 							timer=null;
 						}
