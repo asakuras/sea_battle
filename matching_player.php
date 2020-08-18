@@ -6,6 +6,9 @@
     if(isset($_GET['size'])){
         $_SESSION['size'] = $_GET['size'];
     }
+    $role_img = $_SESSION['user_icon'];
+    $username = $_SESSION['username'];
+$role = $_SESSION['role'];
     $size = $_SESSION['size'];
     $rows = returnWaitList();
     $cnt = count($rows);
@@ -38,11 +41,20 @@
 </head>
 <body>
 <div id="bg-seek" class="container">
+<div id="name_card">
+    
+    <img class="name_card" src="img/name_card.png" alt="name_card">
+    <img id="user-info" src=<?=$role_img?> alt=<?=$role?>>
+    <p id="username"><?=$username?></p>
+    <p id="role"><?=$role?></p>
+    <span><a href="user_info.php?current_page=1" id="view_detail">view detail</a> <a href="dosignout.php" id="sign_out">sign out</a><span>
+    
+</div>  
     <div id="invitation-table">
         <ul>
         <?php  for ($i = ($current_page - 1) * $max_entry; $i  < $current_page  * $max_entry && $i < $cnt; $i++){
                 $row = $rows[$i]; ?>
-            <li> <?= $row['info'] ?><div><a userid=<?= $row['userid'] ?>>accept</a></div></li>
+            <li> <?= $row['info'] ?><div class="invite_link"><a userid=<?= $row['userid'] ?>>accept</a></div></li>
         <?php } ?>
           
     </ul>

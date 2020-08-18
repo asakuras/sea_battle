@@ -3,10 +3,11 @@
 
     //返回等待列表
     function returnWaitList(){
+        global $PDO, $GAME_TABLE;
         $fieldsize = $_SESSION['size'];
         $fieldsizeforsql = $PDO->quote($fieldsize);
 
-        global $PDO, $GAME_TABLE;
+        
         $rows = $PDO->query("SELECT * FROM $GAME_TABLE WHERE ismatch=0 AND fieldsize=$fieldsizeforsql");
         $rets = array();
         foreach($rows as $row){

@@ -1,19 +1,35 @@
 window.onload=function(){
     let seek_player=document.getElementById('seek_player');
+    let isseeking = false;
     let acceptOthers=document.getElementById('invitation-table').querySelectorAll('ul a');
+    let link_memory =new Array();
+
     for(let i=0;i<acceptOthers.length;i++){
         acceptOthers[i].onclick=selectone;
     }
-
+    console.log(link_memory);
     seek_player.onclick=function () {
-        seek_player.setAttribute("src","img/seeking.png");
-        ajaxRequest('match/joininwait.php','post',{},
-            function () {
-                console.log("join in table");
-                tellstart();
-            },function () {
-                console.log('fail to join in table');
-            });
+        if(isseeking == false){
+            seek_player.setAttribute("src","img/seeking.png");
+            for(let i=0;i<acceptOthers.length;i++){
+                acceptOthers[i].onclick=null;
+                acceptOthers[i].style.color="grey";
+            }
+            isseeking = true
+            ajaxRequest('match/joininwait.php','post',{},
+                function () {
+                    console.log("join in table");
+                    tellstart();
+                },function () {
+                    console.log('fail to join in table');
+                });
+        }
+        else{
+            isseeking = false;
+
+            window.location.href = "cancelwait.php";
+        }
+        
     };
 
     function selectone() {
