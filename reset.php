@@ -15,4 +15,5 @@
     //steps删除两条
     $PDO->exec("DELETE FROM $STEP_TABLE WHERE userid=$useridforsql");
     $PDO->exec("DELETE FROM $STEP_TABLE WHERE userid=$opponentforsql");
+    echo "reset ok!";
 ?>

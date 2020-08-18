@@ -51,7 +51,7 @@
 
 <tr>
 
-<td><?= $row['username1'] ?></td><td><?= $row['username2'] ?></td><td><?= $row['winner'] ?></td><td><?= $row['score'] ?></td><td><?= $row['field_size'] ?></td>
+<td><?= $row['username1'] ?></td><td><?= $row['username2'] ?></td><td><?= $row['winner'] ?></td><td><?= $row['score'] ?></td><td><?= $row['fieldsize'] ?></td>
 
 
 
@@ -64,7 +64,7 @@
     <a href=<?= "user_info.php?current_page=".$next_page ?>> >> </a>
 </div>
 
-        <a href="index.php"><img id="back" src="img/back.png" alt="back"></a>
+        <a href="lobby.php"><img id="back" src="img/back.png" alt="back"></a>
         <a href="index.php"><img id="home" src="img/home.png" alt="home"></a>
 
 
