@@ -1,36 +1,52 @@
 window.onload=function(){
+    function setcookie(){
+        cookie = {};
+        lines = document.cookie.split(';')
+        for(var l of lines){
+            entry = l.trim().split('=');
+            cookie[entry[0]] = entry[1];
+        }
+        return cookie;
+    }
     let seek_player=document.getElementById('seek_player');
     let isseeking = false;
     let acceptOthers=document.getElementById('invitation-table').querySelectorAll('ul a');
     let link_memory =new Array();
-
+    let cookies = setcookie();
+    let role = cookies['role'];
     for(let i=0;i<acceptOthers.length;i++){
         acceptOthers[i].onclick=selectone;
     }
     console.log(link_memory);
-    seek_player.onclick=function () {
-        if(isseeking == false){
-            seek_player.setAttribute("src","img/seeking.png");
-            for(let i=0;i<acceptOthers.length;i++){
-                acceptOthers[i].onclick=null;
-                acceptOthers[i].style.color="grey";
+    if(role == 'tourist'){
+        seek_player.style.opacity=0.4;
+    }
+    else{
+        seek_player.onclick=function () {
+            if(isseeking == false){
+                seek_player.setAttribute("src","img/seeking.png");
+                for(let i=0;i<acceptOthers.length;i++){
+                    acceptOthers[i].onclick=null;
+                    acceptOthers[i].style.color="grey";
+                }
+                isseeking = true
+                ajaxRequest('match/joininwait.php','post',{},
+                    function () {
+                        console.log("join in table");
+                        tellstart();
+                    },function () {
+                        console.log('fail to join in table');
+                    });
             }
-            isseeking = true
-            ajaxRequest('match/joininwait.php','post',{},
-                function () {
-                    console.log("join in table");
-                    tellstart();
-                },function () {
-                    console.log('fail to join in table');
-                });
-        }
-        else{
-            isseeking = false;
+            else{
+                isseeking = false;
+    
+                window.location.href = "cancelwait.php";
+            }
+            
+        };
+    }
 
-            window.location.href = "cancelwait.php";
-        }
-        
-    };
 
     function selectone() {
 

@@ -142,6 +142,7 @@ seaBattle.Game = function () {
 		var maxShipSize = this.playerField.maxShipSize;
 		var totalShips = maxShipSize * (maxShipSize + 1) * (maxShipSize + 2) / 6;
 		console.log(totalShips + " " + playerShipsCrashed);
+		let win_status = document.getElementById("win_status");
 		if (playerShipsCrashed == totalShips)  {
 			this.enemyField.drawLiveShips();
 			this.enemyField.delCelEvents();

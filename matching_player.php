@@ -8,7 +8,7 @@
     }
     $role_img = $_SESSION['user_icon'];
     $username = $_SESSION['username'];
-$role = $_SESSION['role'];
+    $role = $_SESSION['role'];
     $size = $_SESSION['size'];
     $rows = returnWaitList();
     $cnt = count($rows);
@@ -22,7 +22,7 @@ $role = $_SESSION['role'];
     if($current_page == ceil($cnt / $max_entry)){
             $next_page = $current_page;
     }
-
+    print($_SESSION['size']);
     
 ?>
 

@@ -3,6 +3,7 @@
     session_start();
     checkLegal();
     $role = $_SESSION['role'];
+    setcookie("role",$role);
     $role_img = $_SESSION['user_icon'];
     $username = $_SESSION['username'];
 ?>

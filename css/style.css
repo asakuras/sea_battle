@@ -217,6 +217,13 @@ a{
     display: none;
 }
 
+#win_status{
+    position: absolute;
+    left:36%;
+    top:70%;
+    display: none;
+}
+
 #home{
     position: absolute;
     left:85%;
