@@ -10,6 +10,7 @@
     $username = $_SESSION['username'];
     $role = $_SESSION['role'];
     $size = $_SESSION['size'];
+    setcookie("size",$size);
     $rows = returnWaitList();
     $cnt = count($rows);
     $current_page=$_GET['current_page'];
@@ -22,7 +23,6 @@
     if($current_page == ceil($cnt / $max_entry)){
             $next_page = $current_page;
     }
-    print($_SESSION['size']);
     
 ?>
 
