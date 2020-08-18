@@ -161,8 +161,15 @@ function getAvarageTime($userId){
 function getUserNameById($userid) {
     global $PDO, $USER_TABLE;
     $userid = $PDO->quote($userid);
-    $row = $PDO->query("SELECT username FROM $USER_TABLE WHERE userid = $userid")->fetch();
-    return $row['username'];
+    $row = $PDO->query("SELECT count(*) AS num FROM $USER_TABLE WHERE userid = $userid")->fetch();
+    if($row['num']==0){
+        return 'tourist';
+    }
+    else {
+        $row = $PDO->query("SELECT username FROM $USER_TABLE WHERE userid = $userid")->fetch();
+        return $row['username'];
+    }
+    
 }
 
 //Get battle record
