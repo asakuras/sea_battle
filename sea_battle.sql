@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2020-08-17 10:17:47
+-- 生成日期： 2020-08-18 14:52:59
 -- 服务器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -51,7 +51,8 @@ INSERT INTO `battles` (`bid`, `user1`, `user2`, `time`, `winner`, `score`, `fiel
 (7, 1, 2, 312, 2, 0, 0),
 (8, 2, 1, 123, 2, 0, 0),
 (9, 2, 4, 321, 4, 0, 0),
-(10, 1, 3, 321, 3, 0, 0);
+(10, 1, 3, 321, 3, 0, 0),
+(11, 1, 2, 0, 1, 0, 7);
 
 -- --------------------------------------------------------
 
@@ -88,8 +89,8 @@ CREATE TABLE `games` (
 CREATE TABLE `steps` (
   `sid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `x` int(11) NOT NULL,
-  `y` int(11) NOT NULL,
+  `x` int(11) DEFAULT NULL,
+  `y` int(11) DEFAULT NULL,
   `islast` int(11) NOT NULL DEFAULT 0,
   `nextflag` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -159,25 +160,25 @@ ALTER TABLE `users`
 -- 使用表AUTO_INCREMENT `battles`
 --
 ALTER TABLE `battles`
-  MODIFY `bid` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `bid` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用表AUTO_INCREMENT `chessboards`
 --
 ALTER TABLE `chessboards`
-  MODIFY `cbid` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `cbid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用表AUTO_INCREMENT `games`
 --
 ALTER TABLE `games`
-  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用表AUTO_INCREMENT `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用表AUTO_INCREMENT `users`
