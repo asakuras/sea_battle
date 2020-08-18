@@ -6,7 +6,7 @@ seaBattle.Cell = function (x, y) {
 		shipEnd = 'ship-end-horizontal',
 		ship = 'ship-vertical',
 		shipBegin = 'ship-begin-vertical',
-		shipEnd = 'ship-end-vertical',
+		shipEnd = '`ship-end-vertical`',
 		shipCrashed = 'ship-crashed',
 		sank = 'sank';
 		

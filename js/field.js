@@ -72,7 +72,9 @@ seaBattle.Field = function (width, height,maxShipSize) {
 	this.addCelEvents = function () {
 		for (let i = 0; i < width; i++) {
 			for (let j = 0; j < height; j++) {
-				if(this.cells[i][j].state!='miss'||this.cells[i][j].state!='ship-crashed'||this.cells[i][j].state!='sank') {
+				if(this.cells[i][j].state=='empty'||this.cells[i][j].state=='ship-horizontal'||this.cells[i][j].state=='ship-begin-horizontal'
+					||this.cells[i][j].state=='ship-end-horizontal'||this.cells[i][j].state=='ship-vertical'
+					||this.cells[i][j].state=='ship-end-vertical'||this.cells[i][j].state=='ship-begin-vertical') {
 					this.cells[i][j].addEvent('click');
 				}
 			}

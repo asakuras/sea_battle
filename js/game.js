@@ -75,12 +75,12 @@ seaBattle.Game = function () {
 			this.enemyField.draw('enemyField');
 			if(!First){
 				document.getElementById('your_turn').style.display='none';
-				document.getElementById('opponent_turn').style.display='';
+				document.getElementById('opponent_turn').style.display='inline';
 				this.enemyField.delCelEvents();
 				this.waitEnemy();
 			}
 			else{
-				document.getElementById('your_turn').style.display='';
+				document.getElementById('your_turn').style.display='inline';
 				document.getElementById('opponent_turn').style.display='none';
 			}
 		}
@@ -114,7 +114,7 @@ seaBattle.Game = function () {
 				if (result == 'miss') {
 					this.waitEnemy();
 					your_turn.style.display='none';
-					opponent_turn.style.display='';
+					opponent_turn.style.display='inline';
 				}
 				else {
 					let timer=setInterval(function () {
@@ -177,7 +177,7 @@ seaBattle.Game = function () {
 					if((10*x+y)!=tmpcoords&&x!==null){
 						flag=result.nextflag;
 						switch (flag) {
-							case 0:state='empty';break;
+							case 0:state='miss';break;
 							case 1:state='ship-crashed';break;
 							case 2:state='sank';
 						}
@@ -186,7 +186,7 @@ seaBattle.Game = function () {
 						if(flag==2)playerField.cells[parseInt(x)][parseInt(y)].ship.draw('sank');
 						if(flag==0){
 							enemyField.addCelEvents();
-							document.getElementById('your_turn').style.display='';
+							document.getElementById('your_turn').style.display='inline';
 							document.getElementById('opponent_turn').style.display='none';
 							clearInterval(timer);
 							timer=null;
