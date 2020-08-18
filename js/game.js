@@ -8,8 +8,8 @@ seaBattle.Game = function () {
 	let opponent=cookies['opponent'];
 
 	this.prepare = function(width, height, maxShipSize) {
-		this.playerField = new seaBattle.Field(width, height, maxShipSize),
-		this.enemyField = new seaBattle.Field (width, height, maxShipSize),
+		this.playerField = new seaBattle.Field(width, height, maxShipSize);
+		this.enemyField = new seaBattle.Field (width, height, maxShipSize);
 		enemy = new seaBattle.Player(width, height);
 		for (var i = 0; i < width; i++) {
 			for (var j = 0; j < height; j++) {
@@ -27,7 +27,7 @@ seaBattle.Game = function () {
 			for (var m = 0; m < (this.playerField.maxShipSize - k); m++) {
 				var playerShip = new seaBattle.Ship(k+1);
 				this.playerField.addShip(playerShip, m);
-				if(mode==='ai'){
+				if(mode=='ai'){
 					var enemyShip = new seaBattle.Ship(k+1);
 					this.enemyField.addShip(enemyShip, m);
 				}
@@ -41,21 +41,39 @@ seaBattle.Game = function () {
 		if(mode=='human'){
 			let ships=requestShip.split(',');
 			let nShip=0;
-			for (let k = 0; k < this.playerField.maxShipSize ; k++) {
-				for (let m = 0; m < (this.playerField.maxShipSize - k); m++) {
-					let enemyShip = new seaBattle.Ship(k+1);
-					enemyShip.lives=k+1;
-					enemyShip.size=k+1;
+			for (let k = this.playerField.maxShipSize; k > 0 ; k--) {
+				for (let m = 0; m < (this.playerField.maxShipSize - k + 1); m++) {
+					let enemyShip = new seaBattle.Ship(k);
 					for(let n=0;n<enemyShip.size;n++){
-						let x=ships[nShip]/10,y=ships[nShip]%10;
-						this.enemyField.cells[x][y].state='';
-						enemyShip.decks[nShip++]=this.enemyField.cells[x][y];
+						let x=parseInt(parseInt(ships[nShip])/10+''),y=parseInt(ships[nShip])%10;
+						let nx,ny,hv;
+						if(nShip<ships.length&&n<enemyShip.size-1){
+							nx=parseInt(parseInt(ships[nShip+1])/10+'');
+							ny=parseInt(ships[nShip+1])%10;
+							hv=nx==x?'v':'h';
+						}
+						if(n==0){
+							if(k==1)this.enemyField.cells[x][y].state='ship-begin-vertical';
+							else if(hv=='h')this.enemyField.cells[x][y].state='ship-begin-horizontal';
+							else this.enemyField.cells[x][y].state='ship-begin-vertical';
+						}
+						else if(n==enemyShip.size-1){
+							if(hv=='h')this.enemyField.cells[x][y].state='ship-end-horizontal';
+							else this.enemyField.cells[x][y].state='ship-end-vertical';
+						}
+						else{
+							if(hv=='h')this.enemyField.cells[x][y].state='ship-horizontal';
+							else this.enemyField.cells[x][y].state='ship-vertical';
+						}
+						enemyShip.decks[n]=this.enemyField.cells[x][y];
+						this.enemyField.cells[x][y].ship=enemyShip;
+						nShip++;
 					}
 					this.enemyField.addShip(enemyShip, m);
 				}
 			}
+			this.enemyField.draw('enemyField');
 			if(!First){
-				this.enemyField.draw('enemyField');
 				document.getElementById('your_turn').style.display='none';
 				document.getElementById('opponent_turn').style.display='';
 				this.enemyField.delCelEvents();
@@ -81,7 +99,7 @@ seaBattle.Game = function () {
 	} 
 	
 	this.priority = function (result) {
-		if(mode==='ai'){
+		if(mode=='ai'){
 			this.checkShipsLeft();
 			if (result == 'miss') {
 				enemy.move();
@@ -109,7 +127,7 @@ seaBattle.Game = function () {
 							},function () {
 								alert('Maybe you are offline.');
 							})
-					},500);
+					},1000);
 				}
 			}
 		}
@@ -139,7 +157,8 @@ seaBattle.Game = function () {
 	}
 
 	this.waitEnemy=function () {
-		let coords=null;
+		let x=null;
+		let y=null;
 		let flag=null;
 		let end=null;
 		let timer=null;
@@ -149,33 +168,39 @@ seaBattle.Game = function () {
 		timer=setInterval(function (){
 			ajaxRequest('game/nextstep.php','get',{opponent:opponent},
 				function () {
+				console.log(this.responseText);
 					let result=JSON.parse(this.responseText);
 					let state;
-					coords=result.position;
-					if(coords!=tmpcoords){
+					x=result.x;
+					y=result.y;
+					end=result.islast;
+					if((10*x+y)!=tmpcoords&&x!==null){
 						flag=result.nextflag;
 						switch (flag) {
 							case 0:state='empty';break;
 							case 1:state='ship-crashed';break;
 							case 2:state='sank';
 						}
-						playerField.cells[coords/10][coords%10].state=state;
-						playerField.cells[coords/10][coords%10].setClassName(state);
+						playerField.cells[parseInt(x)][parseInt(y)].state=state;
+						playerField.cells[parseInt(x)][parseInt(y)].setClassName(state);
+						if(flag==2)playerField.cells[parseInt(x)][parseInt(y)].ship.draw('sank');
 						if(flag==0){
 							enemyField.addCelEvents();
 							document.getElementById('your_turn').style.display='';
 							document.getElementById('opponent_turn').style.display='none';
+							clearInterval(timer);
+							timer=null;
 						}
 						else if(end){
 							thisGame.enemyField.drawLiveShips();
 							document.getElementById('opponent_turn').style.display='none';
+							clearInterval(timer);
+							timer=null;
 						}
-						clearInterval(timer);
-						timer=null;
-						tmpcoords=coords;
+						tmpcoords=10*x+y;
 					}
 				},function () {
 					console.log('');
-				})},500);
+				})},1000);
 	}
 }

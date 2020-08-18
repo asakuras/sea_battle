@@ -13,7 +13,7 @@
         $firstmove=0;
         if($row['firstmove'] == $userid) $firstmove=1;
         $opponetid=0;
-        if($row['user1'] == $useridforsql){
+        if($row['user1'] == $userid){
             $opponetid = $row['user2'];
         }
         else{

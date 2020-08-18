@@ -72,7 +72,7 @@ seaBattle.Field = function (width, height,maxShipSize) {
 	this.addCelEvents = function () {
 		for (let i = 0; i < width; i++) {
 			for (let j = 0; j < height; j++) {
-				if(this.cells[i][j].state=='empty') {
+				if(this.cells[i][j].state!='miss'||this.cells[i][j].state!='ship-crashed'||this.cells[i][j].state!='sank') {
 					this.cells[i][j].addEvent('click');
 				}
 			}
@@ -151,13 +151,15 @@ seaBattle.Field = function (width, height,maxShipSize) {
 							let timer=setInterval(function () {
 								ajaxRequest('game/waitstart.php','get',{},
 									function () {
-										console.log(this.responseText);
 										let result=JSON.parse(this.responseText);
 										requestShip=result.opponentboard;//对手棋盘信息
 										First=result.firstmove;//先手信息
-										seaBattle.theGame.start(requestShip,First,mode);
-										clearInterval(timer);
-										timer=null;
+										console.log(requestShip);
+										if(!!requestShip){
+											seaBattle.theGame.start(requestShip,First,mode);
+											clearInterval(timer);
+											timer=null;
+										}
 									},function () {
 										console.log("无响应500");
 									})
@@ -235,6 +237,7 @@ seaBattle.Field = function (width, height,maxShipSize) {
 		for ( var i = 0; i < ship.size ; i++) {
 			ship.decks[i] = this.cells[x][y];
 			this.cells[x][y].ship = ship;
+			ajaxShip[pointShip++]=10*x+y;
 			ship.makeState(i);
 			if (ship.orientation == 'vertical') {
 				y++;

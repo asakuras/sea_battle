@@ -10,14 +10,13 @@
 
 
     $opponentforsql = $PDO->quote($opponent);
-    $useridforsql = $PDO->quoted($userid);
+    $useridforsql = $PDO->quote($userid);
 
     $opponentrow = $PDO->query("SELECT * FROM $STEP_TABLE WHERE userid=$opponentforsql")->fetch();
-    $selfrow = $PDO->query("SELECT * FROM $STEP_TABLE WHERE userid=$useridforsql")->fetch();
+    $selfrow = $PDO->query("SELECT * FROM $STEP_TABLE WHERE userid=$opponentforsql")->fetch();
 
-    $position = 10*$opponentrow['x']+$opponentrow['y'];
     $islast = $opponentrow['islast'];
     $nextflag = $selfrow['nextflag'];
 
-    echo json_encode([ 'position' => $position, 'islast' => $islast, 'nextflag' => $nextflag]);
+    echo json_encode([ 'x' => $opponentrow['x'], 'y' => $opponentrow['y'],'islast' => $islast, 'nextflag' => $nextflag]);
 ?>

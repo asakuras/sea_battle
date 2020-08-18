@@ -65,11 +65,12 @@ seaBattle.Cell = function (x, y) {
 	//cheks shot result
 	this.checkShot = function () {
 		let flag=0;
+		let x=this.x;
+		let y=this.y;
 		if (this.state == 'empty') {
 			this.state ='miss';
 			if(mode==='human'){
-				flag=0;
-				ajaxRequest('game/getaclick.php','post',{position:this.x*10+this.y,nextflag:flag,isfinish:0,opponent:user2id},
+				ajaxRequest('game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:0,opponent:user2id},
 					function () {
 						console.log('wait for your opponent');
 					},
@@ -90,11 +91,11 @@ seaBattle.Cell = function (x, y) {
 				flag=1;
 			}
 			if(mode==='human'){
-				let end = this.checkShipsLeft()==1?0:1;
-				ajaxRequest('game/getaclick.php','post',{position:this.x*10+this.y,nextflag:flag,isfinish:end,opponent:user2id},
+				let end = seaBattle.theGame.checkShipsLeft()==1?1:0;
+				console.log(end+'===end');
+				ajaxRequest('game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:end,opponent:user2id},
 					function () {
-						if(end)console.log('你赢了');
-						else console.log('继续点击');
+
 					},
 					function () {
 						alert("Maybe you are offline.");

@@ -6,20 +6,18 @@
 
     $userid = $_SESSION['userid'];
     $opponent = $_POST['opponent'];
-    $position = $_POST['position'];
-    $x = $position / 10;
-    $y = $position % 10;
+    $x = $_POST['x'];
+    $y = $_POST['y'];
     $isfinish = $_POST['isfinish'];
     $nextflag = $_POST['nextflag'];
 
-    $useridforsql = $PDO->quote($user);
+    $useridforsql = $PDO->quote($userid);
     $xforsql = $PDO->quote($x);
     $yforsql = $PDO->quote($y);
     $isfinishforsql = $PDO->quote($isfinish);
     $nextflagforsql = $PDO->quote($nextflag);
 
     $opponentforsql = $PDO->quote($opponent);
-    $nextflagopponentforsql = $PDO->quote($nextflag^1);
 
 
 
@@ -30,7 +28,6 @@
     //}
     //else if($hasrecord['num']==1){
         $PDO->exec("UPDATE $STEP_TABLE SET x=$xforsql,y=$yforsql,islast=$isfinishforsql,nextflag=$nextflagforsql WHERE userid=$useridforsql");
-        $PDO->exec("UPDATE $STEP_TABLE SET nextflag=$nextflagopforsql WHERE userid=$opponentforsql");
     //}
 
     
