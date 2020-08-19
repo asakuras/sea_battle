@@ -1,6 +1,6 @@
 # sea_battle
 
-This is a simple web game based on HTML/CSS/JS. We implements both human mode and ai mode. Thanks to https://github.com/soffest/sb, which implements the game env and the ai mode. We develops on this project.
+This is a simple web game based on HTML/CSS/JS. We implements both human mode and ai mode. Thanks to https://github.com/soffest/sb, which implements the game env and the ai mode. We develops based on this project.
 
 ### overview
 ![img](https://github.com/asakuras/sea_battle/blob/master/img/overview/overview.png)
