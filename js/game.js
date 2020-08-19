@@ -118,7 +118,7 @@ seaBattle.Game = function () {
 				}
 				else {
 					let timer=setInterval(function () {
-						ajaxRequest('game/nextstep.php','get',{opponent:opponent},
+						ajaxRequest('./game/nextstep.php','get',{opponent:opponent},
 							function () {
 								enemyField.addCelEvents();
 								clearInterval(timer);
@@ -171,7 +171,7 @@ seaBattle.Game = function () {
 		let playerField=this.playerField;
 		let thisGame=this;
 		timer=setInterval(function (){
-			ajaxRequest('game/nextstep.php','get',{opponent:opponent},
+			ajaxRequest('./game/nextstep.php','get',{opponent:opponent},
 				function () {
 				console.log(this.responseText);
 					let result=JSON.parse(this.responseText);

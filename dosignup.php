@@ -1,5 +1,5 @@
 <?php
-    include("include/util.inc.php");
+    include("./include/util.inc.php");
     session_start();
     checkLegal();
 $username=$_POST['username'];

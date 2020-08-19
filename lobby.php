@@ -1,5 +1,5 @@
 <?php
-    include("include/util.inc.php");
+    include("./include/util.inc.php");
     session_start();
     checkLegal();
     $role = $_SESSION['role'];

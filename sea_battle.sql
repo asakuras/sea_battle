@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2020-08-18 15:55:01
+-- 生成日期： 2020-08-19 11:19:29
 -- 服务器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -31,9 +31,9 @@ CREATE TABLE `battles` (
   `bid` int(128) NOT NULL,
   `user1` int(128) NOT NULL,
   `user2` int(128) NOT NULL,
-  `time` int(128) NOT NULL,
+  `time` int(128) NOT NULL DEFAULT 0,
   `winner` int(128) NOT NULL,
-  `score` int(100) NOT NULL,
+  `score` int(100) NOT NULL DEFAULT 0,
   `fieldsize` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,17 +42,15 @@ CREATE TABLE `battles` (
 --
 
 INSERT INTO `battles` (`bid`, `user1`, `user2`, `time`, `winner`, `score`, `fieldsize`) VALUES
-(1, 1, 2, 123, 1, 0, 0),
-(2, 2, 3, 321, 2, 0, 0),
-(3, 1, 2, 123213, 2, 0, 0),
-(4, 2, 3, 321, 3, 0, 0),
-(5, 1, 2, 123, 1, 0, 0),
-(6, 1, 2, 2321, 2, 0, 0),
-(7, 1, 2, 312, 2, 0, 0),
-(8, 2, 1, 123, 2, 0, 0),
-(9, 2, 4, 321, 4, 0, 0),
-(10, 1, 3, 321, 3, 0, 0),
-(11, 1, 2, 0, 1, 0, 7);
+(1, 1, 2, 123, 1, 0, 7),
+(3, 1, 2, 123213, 2, 0, 10),
+(5, 1, 2, 123, 1, 0, 7),
+(6, 1, 2, 2321, 2, 0, 10),
+(7, 1, 2, 312, 2, 0, 7),
+(8, 2, 1, 123, 2, 0, 10),
+(11, 1, 2, 0, 1, 0, 7),
+(12, 2, 1, 0, 2, 0, 7),
+(14, 2, 1, 0, 2, 0, 10);
 
 -- --------------------------------------------------------
 
@@ -115,9 +113,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userid`, `username`, `password`, `role`) VALUES
 (1, 'abc', '$2y$10$U/gFEpV9lEEzSra516ocIeS5ZdP/3tk1BXsbmuH6NivomzGhVIWyK', 'user'),
-(2, 'aaaaa', '$2y$10$Zg.93UrhQU3LDVyPMQuAb.QTpK3nmQStrwF37dHCeKKMX4eXeEmZC', 'user'),
-(3, '111', '$2y$10$ZmNUnsVxAXJ5Ok5m3NYoLeYGpe.nQUHXH/sBr0AdUCfyGlGIU3Aka', 'user'),
-(4, '123', '$2y$10$z3GYZP.zXhVMMUsS1knUK.56PP46L8cO.6gfTG55vVRVAmTCqBVNq', 'user');
+(2, 'aaaaa', '$2y$10$Zg.93UrhQU3LDVyPMQuAb.QTpK3nmQStrwF37dHCeKKMX4eXeEmZC', 'user');
 
 --
 -- 转储表的索引
@@ -161,31 +157,31 @@ ALTER TABLE `users`
 -- 使用表AUTO_INCREMENT `battles`
 --
 ALTER TABLE `battles`
-  MODIFY `bid` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `bid` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用表AUTO_INCREMENT `chessboards`
 --
 ALTER TABLE `chessboards`
-  MODIFY `cbid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cbid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- 使用表AUTO_INCREMENT `games`
 --
 ALTER TABLE `games`
-  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `gid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- 使用表AUTO_INCREMENT `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用表AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

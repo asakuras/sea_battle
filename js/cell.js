@@ -70,7 +70,7 @@ seaBattle.Cell = function (x, y) {
 		if (this.state == 'empty') {
 			this.state ='miss';
 			if(mode==='human'){
-				ajaxRequest('game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:0,opponent:user2id},
+				ajaxRequest('./game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:0,opponent:user2id},
 					function () {
 						console.log('wait for your opponent');
 					},
@@ -93,7 +93,7 @@ seaBattle.Cell = function (x, y) {
 			if(mode==='human'){
 				let end = seaBattle.theGame.checkShipsLeft()==1?1:0;
 				console.log(end+'===end');
-				ajaxRequest('game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:end,opponent:user2id},
+				ajaxRequest('./game/getaclick.php','post',{x:x,y:y,nextflag:flag,isfinish:end,opponent:user2id},
 					function () {
 
 					},

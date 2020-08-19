@@ -30,7 +30,7 @@ window.onload=function(){
                     acceptOthers[i].style.color="grey";
                 }
                 isseeking = true
-                ajaxRequest('match/joininwait.php','post',{},
+                ajaxRequest('./match/joininwait.php','post',{},
                     function () {
                         console.log("join in table");
                         tellstart();
@@ -52,7 +52,7 @@ window.onload=function(){
 
         let user2id=this.getAttribute('userid');
         console.log(user2id);
-        ajaxRequest('match/selectone.php','post',{chooseid:user2id},
+        ajaxRequest('./match/selectone.php','post',{chooseid:user2id},
             function () {
                 tellstart();
             },function () {
@@ -64,7 +64,7 @@ window.onload=function(){
         let ismatch=null;
         let opponent=null;
         let timer=setInterval(function () {
-            ajaxRequest('match/tellstart.php','get',{},
+            ajaxRequest('./match/tellstart.php','get',{},
                 function () {
                     console.log(this.responseText);
                     let result=JSON.parse(this.responseText);

@@ -1,6 +1,6 @@
 
 <?php
-    include("match/returnwaitlist.php");
+    include("./match/returnwaitlist.php");
     session_start();
     checkLegal();
     if(isset($_GET['size'])){

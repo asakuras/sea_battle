@@ -1,5 +1,5 @@
 <?php
-    include("include/util.inc.php");
+    include("./include/util.inc.php");
 
     //返回等待列表
     function returnWaitList(){

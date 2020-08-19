@@ -146,12 +146,12 @@ seaBattle.Field = function (width, height,maxShipSize) {
 			if ((s == 0) && (n == this.maxShipSize-1)) {
 				this.delCelEvents();
 				if(mode=='human'){
-					ajaxRequest('game/prepare.php','post',{chessboard:ajaxShip},
+					ajaxRequest('./game/prepare.php','post',{chessboard:ajaxShip},
 						function () {
 							console.log("Wait a moment for your enemy.");
 							ready=true;
 							let timer=setInterval(function () {
-								ajaxRequest('game/waitstart.php','get',{},
+								ajaxRequest('./game/waitstart.php','get',{},
 									function () {
 										let result=JSON.parse(this.responseText);
 										requestShip=result.opponentboard;//对手棋盘信息

@@ -33,11 +33,11 @@
     
     
     if($isfinish == 1){
-        sleep(2);
         $size = $PDO->quote($_SESSION['size']);
         //游戏结束
         //battles加一行对战信息
         $PDO->exec("INSERT INTO $BATTLE_TABLE(user1,user2,winner,fieldsize) VALUES($useridforsql,$opponentforsql,$useridforsql,$size)");
+        sleep(1);
         //chessboard删除两条
         $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$useridforsql");
         $PDO->exec("DELETE FROM $CHESSBOARD_TABLE WHERE userid=$opponentforsql");
